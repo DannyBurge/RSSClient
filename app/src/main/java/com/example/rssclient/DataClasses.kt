@@ -1,31 +1,38 @@
 package com.example.rssclient
 
+import android.os.Parcelable
+import com.tickaroo.tikxml.annotation.Attribute
 import com.tickaroo.tikxml.annotation.Element
+import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml
+import kotlinx.android.parcel.Parcelize
 
 @Xml
-data class Response(
-    @Element val rss: Rss
+data class RSSFeedResponse(
+    @Attribute val version: String,
+    @Element val channel: ChannelRSS
 )
 
-@Xml
-data class Rss(
-    @Element val channel: Channel
+@Xml(name = "channel")
+data class ChannelRSS(
+    @PropertyElement val title: String,
+    @Element val item: List<Item>,
 )
 
-@Xml
-data class Channel (
-    
-        )
+@Parcelize
+@Xml(name = "item")
+data class Item(
+    @PropertyElement val title: String,
+    @PropertyElement(name = "ht:picture") val picture: String,
+    @PropertyElement val pubDate: String,
+    @Element val newsItemList: List<NewsItem>
+) : Parcelable
 
-
-@Xml
-data class item(
-    @Element val author: String,
-    @Element val title: String,
-    @Element val link: String,
-    @Element val description: String,
-    @Element val pubDate: String,
-    @Element val enclosure: String,
-    @Element val category: String,
-)
+@Parcelize
+@Xml(name = "ht:news_item")
+data class NewsItem(
+    @PropertyElement(name = "ht:news_item_title") val news_item_title: String,
+    @PropertyElement(name = "ht:news_item_snippet") val news_item_snippet: String,
+    @PropertyElement(name = "ht:news_item_url") val news_item_url: String,
+    @PropertyElement(name = "ht:news_item_source") val news_item_source: String,
+) : Parcelable

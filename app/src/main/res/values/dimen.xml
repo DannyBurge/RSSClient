@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textSizeHeader1">18sp</dimen>
+    <dimen name="textSizeHeader2">16sp</dimen>
+    <dimen name="textSize">13sp</dimen>
+
+    <dimen name="shiftSmall">4dp</dimen>
+    <dimen name="shiftMedium">8dp</dimen>
+    <dimen name="shiftBig">16dp</dimen>
+</resources>

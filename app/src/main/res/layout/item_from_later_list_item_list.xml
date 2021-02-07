@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/shiftSmall"
+    android:background="@color/cardBackground"
+    android:paddingVertical="@dimen/shiftMedium">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/itemFromLaterPicture"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="@dimen/shiftBigBig"
+        android:layout_marginTop="@dimen/shiftSmall"
+        android:background="@color/cardPicBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/itemFromLaterTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/shiftBig"
+        android:text="title"
+        android:textSize="@dimen/textSizeHeader1"
+        app:layout_constraintBottom_toBottomOf="@+id/itemFromLaterPicture"
+        app:layout_constraintEnd_toStartOf="@+id/itemFromLaterButton"
+        app:layout_constraintStart_toEndOf="@+id/itemFromLaterPicture"
+        app:layout_constraintTop_toTopOf="@+id/itemFromLaterPicture" />
+
+    <Button
+        android:id="@+id/itemFromLaterButton"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="@dimen/shiftBigBig"
+        android:background="@drawable/button_add_remove_to_favourite"
+        app:layout_constraintBottom_toBottomOf="@+id/itemFromLaterPicture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/itemFromLaterPicture" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewForLaterNewsItemsList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/shiftMedium"
+        android:layout_marginTop="@dimen/shiftMedium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemFromLaterPicture">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

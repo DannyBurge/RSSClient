@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/dicesTab"
+        android:id="@+id/MainRSSTab"
         android:title="@string/tabNameRSS_main"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/historyTab"
+        android:id="@+id/savedTab"
         android:title="@string/tabNameRSS_later"
         app:showAsAction="ifRoom" />
 </menu>
