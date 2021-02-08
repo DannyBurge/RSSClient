@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
@@ -43,6 +42,7 @@ class ItemListFromItemAdapter(
         private val snippetText: TextView = view.findViewById(R.id.newsItemSnippet)
         private val buttonGoTo: Button = view.findViewById(R.id.buttonToNew)
 
+        // Фильтруем строку на интернет-символы
         private fun replaceBadSymbols(str: String): String {
             return Html.fromHtml(str, Html.FROM_HTML_MODE_LEGACY).toString()
                 .replace("&nbsp;", "")
@@ -67,16 +67,13 @@ class ItemListFromItemAdapter(
                 rect.right += 100
                 parent.touchDelegate = TouchDelegate(rect, buttonGoTo)
             }
+
+            // На нажатие кнопы открывается второе активити с WebView
+            // и по ссылке из объекта открывает новость
             buttonGoTo.setOnClickListener {
                 val intent = Intent(context, NewsReaderActivity::class.java)
                 intent.putExtra("newsLink", newsItem.news_item_url)
                 context.startActivity(intent)
-
-                Toast.makeText(
-                    context,
-                    "Going to the link\n" + newsItem.news_item_url,
-                    Toast.LENGTH_SHORT
-                ).show()
             }
         }
     }

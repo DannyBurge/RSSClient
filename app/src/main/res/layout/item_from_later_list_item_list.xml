@@ -12,10 +12,10 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="@dimen/shiftBigBig"
-        android:layout_marginTop="@dimen/shiftSmall"
         android:background="@color/cardPicBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/itemFromLaterPubDate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/itemFromLaterTitle" />
 
     <TextView
         android:id="@+id/itemFromLaterTitle"
@@ -24,17 +24,31 @@
         android:layout_marginStart="@dimen/shiftBig"
         android:text="title"
         android:textSize="@dimen/textSizeHeader1"
-        app:layout_constraintBottom_toBottomOf="@+id/itemFromLaterPicture"
+        app:layout_constraintBottom_toTopOf="@+id/itemFromLaterPubDate"
+        app:layout_constraintEnd_toStartOf="@+id/itemFromLaterButton"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/itemFromLaterPicture"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/itemFromLaterPubDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/shiftBig"
+        android:text="PubDate"
+        android:textSize="@dimen/textSize"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/itemFromLaterButton"
         app:layout_constraintStart_toEndOf="@+id/itemFromLaterPicture"
-        app:layout_constraintTop_toTopOf="@+id/itemFromLaterPicture" />
+        app:layout_constraintTop_toBottomOf="@+id/itemFromLaterTitle" />
 
     <Button
         android:id="@+id/itemFromLaterButton"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="@dimen/buttonSize"
+        android:layout_height="@dimen/buttonSize"
         android:layout_marginEnd="@dimen/shiftBigBig"
-        android:background="@drawable/button_add_remove_to_favourite"
+        android:background="@drawable/baseline_delete_outline_black_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/itemFromLaterPicture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/itemFromLaterPicture" />

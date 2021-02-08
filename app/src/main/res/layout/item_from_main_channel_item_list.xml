@@ -12,10 +12,10 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="@dimen/shiftBigBig"
-        android:layout_marginTop="@dimen/shiftSmall"
         android:background="@color/cardPicBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/itemFromChanelPubDate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/itemFromChanelTitle" />
 
     <TextView
         android:id="@+id/itemFromChanelTitle"
@@ -24,18 +24,32 @@
         android:layout_marginStart="@dimen/shiftBig"
         android:text="title"
         android:textSize="@dimen/textSizeHeader1"
-        app:layout_constraintBottom_toBottomOf="@+id/itemFromChannelPicture"
+        app:layout_constraintBottom_toTopOf="@+id/itemFromChanelPubDate"
+        app:layout_constraintEnd_toStartOf="@+id/itemFromChanelButton"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/itemFromChannelPicture"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/itemFromChanelPubDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/shiftBig"
+        android:text="PubDate"
+        android:textSize="@dimen/textSize"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/itemFromChanelButton"
         app:layout_constraintStart_toEndOf="@+id/itemFromChannelPicture"
-        app:layout_constraintTop_toTopOf="@+id/itemFromChannelPicture" />
+        app:layout_constraintTop_toBottomOf="@+id/itemFromChanelTitle" />
+
 
     <Button
         android:id="@+id/itemFromChanelButton"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="@dimen/buttonSize"
+        android:layout_height="@dimen/buttonSize"
         android:layout_marginEnd="@dimen/shiftBigBig"
-        android:background="@drawable/button_add_remove_to_favourite"
-        android:rotation="45"
+        android:background="@drawable/baseline_save_alt_black_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/itemFromChannelPicture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/itemFromChannelPicture" />

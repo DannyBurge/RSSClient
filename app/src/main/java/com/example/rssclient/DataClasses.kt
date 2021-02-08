@@ -6,6 +6,7 @@ import com.tickaroo.tikxml.annotation.Element
 import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml
 import kotlinx.android.parcel.Parcelize
+import java.util.*
 
 @Xml
 data class RSSFeedResponse(

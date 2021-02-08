@@ -18,6 +18,7 @@ import com.squareup.picasso.Picasso
 class SavedItemListAdapter(
     var context: Context,
     private val items: MutableList<Item>?,
+    val activity: MainActivity
 ) :
     RecyclerView.Adapter<SavedItemListAdapter.ViewHolder>() {
     private val inflater = LayoutInflater.from(context)
@@ -45,6 +46,7 @@ class SavedItemListAdapter(
     inner class ViewHolder constructor(view: View) : RecyclerView.ViewHolder(view) {
         val picture: ImageView = view.findViewById(R.id.itemFromLaterPicture)
         private val title: TextView = view.findViewById(R.id.itemFromLaterTitle)
+        private val pubDate: TextView = view.findViewById(R.id.itemFromLaterPubDate)
         private val recyclerView: RecyclerView =
             view.findViewById(R.id.recyclerViewForLaterNewsItemsList)
         private val button: Button = view.findViewById(R.id.itemFromLaterButton)
@@ -62,7 +64,10 @@ class SavedItemListAdapter(
                 parent.touchDelegate = TouchDelegate(rect, button)
             }
 
+            // Раскидываем значения из объекта по нужным полям
+            val dateConverter = DateConverter()
             title.text = item.title
+            pubDate.text = dateConverter.write(dateConverter.read(item.pubDate))
             recyclerView.layoutManager = LinearLayoutManager(context)
             val itemList: MutableList<NewsItem> = mutableListOf()
             val adapter = ItemListFromItemAdapter(context, itemList)
@@ -70,7 +75,13 @@ class SavedItemListAdapter(
             itemList.addAll(item.newsItemList)
             adapter.notifyDataSetChanged()
 
+            // На кнопу вешаем удаление поста из сохраненных -
+            // удаляем из текущего списка, результат даем в LiveData, перерисовываем список
             button.setOnClickListener {
+                val savedPostsList: MutableList<Item> = mutableListOf()
+                activity.getSavedPostsList().value?.let { it1 -> savedPostsList.addAll(it1) }
+                savedPostsList.remove(item)
+                activity.setSavedPostsList(savedPostsList)
                 items?.remove(item)
                 this@SavedItemListAdapter.notifyDataSetChanged()
                 Toast.makeText(context, "Удалено из сохраненных", Toast.LENGTH_SHORT).show()

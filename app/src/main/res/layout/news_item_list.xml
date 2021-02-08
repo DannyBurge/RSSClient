@@ -51,8 +51,8 @@
 
     <Button
         android:id="@+id/buttonToNew"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/buttonSize"
+        android:layout_height="@dimen/buttonSize"
         android:layout_marginEnd="@dimen/shiftBig"
         android:background="@drawable/baseline_arrow_forward_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"

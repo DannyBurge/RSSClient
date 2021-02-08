@@ -23,9 +23,6 @@ class ItemListFromMainChannelAdapter(
     RecyclerView.Adapter<ItemListFromMainChannelAdapter.ViewHolder>() {
     private val inflater = LayoutInflater.from(context)
 
-    var listWasChanged = activity.getSavedListSize()
-    var savedPostsList = activity.getSavedPostsList()
-
     // Создаем элемент списка который отображается на экране
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = inflater.inflate(R.layout.item_from_main_channel_item_list, parent, false)
@@ -49,6 +46,7 @@ class ItemListFromMainChannelAdapter(
     inner class ViewHolder constructor(view: View) : RecyclerView.ViewHolder(view) {
         val picture: ImageView = view.findViewById(R.id.itemFromChannelPicture)
         private val title: TextView = view.findViewById(R.id.itemFromChanelTitle)
+        private val pubDate: TextView = view.findViewById(R.id.itemFromChanelPubDate)
         private val recyclerView: RecyclerView =
             view.findViewById(R.id.recyclerViewForNewsItemsList)
         private val button: Button = view.findViewById(R.id.itemFromChanelButton)
@@ -66,31 +64,32 @@ class ItemListFromMainChannelAdapter(
                 parent.touchDelegate = TouchDelegate(rect, button)
             }
 
-            button.setOnClickListener {
-                if (activity.getSavedListSize().value == null) {
-                    activity.setSavedPostsList(mutableListOf(item))
-                    activity.setSavedListSize(1)
-                    Toast.makeText(context, "Добавлено в сохраненные", Toast.LENGTH_SHORT).show()
-                } else {
-                    if (!activity.getSavedPostsList().value?.contains(item)!!) {
-                        activity.getSavedPostsList().value?.add(item)
-                        activity.setSavedListSize(activity.getSavedPostsList().value!!.size)
-                        Toast.makeText(context, "Добавлено в сохраненные", Toast.LENGTH_SHORT)
-                            .show()
-                    } else {
-                        Toast.makeText(context, "Уже в сохраненных", Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-            }
-
+            // Раскидываем значения из объекта по нужным полям
+            val dateConverter = DateConverter()
             title.text = item.title
+            pubDate.text = dateConverter.write(dateConverter.read(item.pubDate))
             recyclerView.layoutManager = LinearLayoutManager(context)
             val itemList: MutableList<NewsItem> = mutableListOf()
             val adapter = ItemListFromItemAdapter(context, itemList)
             recyclerView.adapter = adapter
             itemList.addAll(item.newsItemList)
             adapter.notifyDataSetChanged()
+
+            // На кнопу вешаем добавление поста в сохраненные -
+            // добавляем во временный список (с текущими сохраненными), результат даем в LiveData
+            button.setOnClickListener {
+                val savedPostsList: MutableList<Item> = mutableListOf()
+                activity.getSavedPostsList().value?.let { it1 -> savedPostsList.addAll(it1) }
+
+                if (!savedPostsList.contains(item)) {
+                    savedPostsList.add(0, item)
+                    activity.setSavedPostsList(savedPostsList)
+                    Toast.makeText(context, "Добавлено в сохраненные", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    Toast.makeText(context, "Уже в сохраненных", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }

@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">RSS Client</string>
+    <string name="app_name">Google trends RSS</string>
     <string name="tabNameRSS_main">Лента</string>
     <string name="tabNameRSS_later">Сохраненные</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    
     <string name="InternetIssue">Проблемы с интернет соединением</string>
+    <string name="ServerIssue">Проблемы с сервером</string>
 </resources>

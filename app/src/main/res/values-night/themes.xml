@@ -16,7 +16,5 @@
     <color name="cardPicBackground">@color/semi_clear_white</color>
     <color name="allTextColor">@color/myGray</color>
 
-    <color name="backgroundTempBar">@color/semi_clear_white</color>
-
     <color name="main_bg_color">@color/material_gray_700</color>
 </resources>

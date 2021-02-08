@@ -23,7 +23,7 @@ class FragmentTabAdapter(fm: FragmentManager, context: Context) :
         return mFragmentList.size
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return titles[position]
     }
 
