@@ -25,7 +25,7 @@
         android:text="title"
         android:textSize="@dimen/textSizeHeader1"
         app:layout_constraintBottom_toTopOf="@+id/itemFromChanelPubDate"
-        app:layout_constraintEnd_toStartOf="@+id/itemFromChanelButton"
+        app:layout_constraintEnd_toStartOf="@+id/itemFromChanelSave"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/itemFromChannelPicture"
         app:layout_constraintTop_toTopOf="parent"
@@ -39,19 +39,18 @@
         android:text="PubDate"
         android:textSize="@dimen/textSize"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/itemFromChanelButton"
+        app:layout_constraintEnd_toStartOf="@+id/itemFromChanelSave"
         app:layout_constraintStart_toEndOf="@+id/itemFromChannelPicture"
         app:layout_constraintTop_toBottomOf="@+id/itemFromChanelTitle" />
 
-
     <Button
-        android:id="@+id/itemFromChanelButton"
+        android:id="@+id/itemFromChanelSave"
         android:layout_width="@dimen/buttonSize"
         android:layout_height="@dimen/buttonSize"
-        android:layout_marginEnd="@dimen/shiftBigBig"
         android:background="@drawable/baseline_save_alt_black_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/itemFromChannelPicture"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/shiftBigBig"
         app:layout_constraintTop_toTopOf="@+id/itemFromChannelPicture" />
 
     <androidx.recyclerview.widget.RecyclerView

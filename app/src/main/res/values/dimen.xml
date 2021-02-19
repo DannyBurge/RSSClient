@@ -3,6 +3,8 @@
     <dimen name="textSizeHeader1">18sp</dimen>
     <dimen name="textSizeHeader2">16sp</dimen>
     <dimen name="textSize">13sp</dimen>
+    <dimen name="buttonTextSize">8sp</dimen>
+    <dimen name="textButtonSize">32dp</dimen>
 
     <dimen name="shiftSmall">4dp</dimen>
     <dimen name="shiftMedium">8dp</dimen>

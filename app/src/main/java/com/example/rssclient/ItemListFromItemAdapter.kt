@@ -16,6 +16,8 @@ import java.util.*
 class ItemListFromItemAdapter(
     var context: Context,
     private val items: List<NewsItem>?,
+    val activity: MainActivity,
+    val theme: String
 ) :
     RecyclerView.Adapter<ItemListFromItemAdapter.ViewHolder>() {
     private val inflater = LayoutInflater.from(context)
@@ -41,6 +43,7 @@ class ItemListFromItemAdapter(
         private val titleText: TextView = view.findViewById(R.id.newsItemTitle)
         private val snippetText: TextView = view.findViewById(R.id.newsItemSnippet)
         private val buttonGoTo: Button = view.findViewById(R.id.buttonToNew)
+        private val buttonShare: Button = view.findViewById(R.id.itemFromLaterShare)
 
         // Фильтруем строку на интернет-символы
         private fun replaceBadSymbols(str: String): String {
@@ -57,15 +60,25 @@ class ItemListFromItemAdapter(
             snippetText.text = replaceBadSymbols(newsItem.news_item_snippet)
 
             // Увеличим область нажатия кнопули
-            val parent = buttonGoTo.parent as View
-            parent.post {
+            (buttonGoTo.parent as View).post {
                 val rect = Rect()
                 buttonGoTo.getHitRect(rect)
                 rect.top -= 100
                 rect.left -= 100
                 rect.bottom += 100
                 rect.right += 100
-                parent.touchDelegate = TouchDelegate(rect, buttonGoTo)
+                (buttonGoTo.parent as View).touchDelegate = TouchDelegate(rect, buttonGoTo)
+            }
+
+            // Увеличим область нажатия кнопули
+            (buttonShare.parent as View).post {
+                val rect = Rect()
+                buttonShare.getHitRect(rect)
+                rect.top -= 100
+                rect.left -= 100
+                rect.bottom += 100
+                rect.right += 100
+                (buttonShare.parent as View).touchDelegate = TouchDelegate(rect, buttonGoTo)
             }
 
             // На нажатие кнопы открывается второе активити с WebView
@@ -74,6 +87,11 @@ class ItemListFromItemAdapter(
                 val intent = Intent(context, NewsReaderActivity::class.java)
                 intent.putExtra("newsLink", newsItem.news_item_url)
                 context.startActivity(intent)
+            }
+
+            // На нажатие кнопы предлагается поделиться строкой с новостью
+            buttonShare.setOnClickListener {
+                activity.shareLink(newsItem.news_item_url, theme)
             }
         }
     }

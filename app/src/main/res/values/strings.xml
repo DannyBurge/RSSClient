@@ -5,4 +5,7 @@
     
     <string name="InternetIssue">Проблемы с интернет соединением</string>
     <string name="ServerIssue">Проблемы с сервером</string>
+    <string name="share">Посмотри интересную новость по теме \"%1$s\":\n</string>
+    <string name="text_button_read">Читать в источнике</string>
+    <string name="text_button_share">Поделиться</string>
 </resources>

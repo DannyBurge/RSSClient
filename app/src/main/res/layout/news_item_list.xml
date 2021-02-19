@@ -1,72 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="4dp">
 
     <View
         android:id="@+id/divider"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="0dp"
+        android:layout_height="1dp"
         android:background="@color/allTextColor"
-        android:layout_height="1dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/shiftMedium"
         android:background="@color/cardBackground"
         app:layout_constraintBottom_toBottomOf="@+id/newsItemTitle"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/newsItemSource" />
+        app:layout_constraintTop_toTopOf="@+id/divider"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/newsItemSource"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/shiftMedium"
         android:layout_marginTop="@dimen/shiftMedium"
-        android:paddingTop="@dimen/shiftSmall"
-        android:layout_marginStart="@dimen/shiftBig"
         android:text="Source:"
         android:textSize="@dimen/textSizeHeader2"
-        app:layout_constraintEnd_toStartOf="@+id/buttonToNew"
+        app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/divider" />
+        app:layout_constraintTop_toTopOf="@+id/view" />
 
     <TextView
         android:id="@+id/newsItemTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/shiftMedium"
+        android:paddingBottom="@dimen/shiftMedium"
         android:text="Title"
-        android:paddingBottom="@dimen/shiftSmall"
         android:textSize="@dimen/textSizeHeader2"
-        app:layout_constraintEnd_toStartOf="@+id/buttonToNew"
-        app:layout_constraintStart_toStartOf="@+id/newsItemSource"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newsItemSource" />
+
 
     <Button
         android:id="@+id/buttonToNew"
-        android:layout_width="@dimen/buttonSize"
-        android:layout_height="@dimen/buttonSize"
-        android:layout_marginEnd="@dimen/shiftBig"
-        android:background="@drawable/baseline_arrow_forward_black_24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/newsItemSource"
-        app:layout_constraintBottom_toBottomOf="@+id/newsItemSource"/>
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/textButtonSize"
+        android:text="@string/text_button_read"
+        android:textSize="@dimen/buttonTextSize"
+        android:layout_marginTop="@dimen/shiftBig"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newsItemSnippet" />
+
+    <Button
+        android:id="@+id/itemFromLaterShare"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/textButtonSize"
+        android:text="@string/text_button_share"
+        android:textSize="@dimen/buttonTextSize"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonToNew"
+        app:layout_constraintStart_toEndOf="@+id/buttonToNew"
+        app:layout_constraintTop_toTopOf="@+id/buttonToNew" />
 
     <TextView
         android:id="@+id/newsItemSnippet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="snippet"
         android:layout_marginVertical="@dimen/shiftMedium"
+        android:text="snippet"
         android:textSize="@dimen/textSize"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/newsItemTitle"
         app:layout_constraintStart_toStartOf="@+id/newsItemTitle"
         app:layout_constraintTop_toBottomOf="@+id/newsItemTitle" />

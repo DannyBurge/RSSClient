@@ -49,7 +49,7 @@ class SavedItemListAdapter(
         private val pubDate: TextView = view.findViewById(R.id.itemFromLaterPubDate)
         private val recyclerView: RecyclerView =
             view.findViewById(R.id.recyclerViewForLaterNewsItemsList)
-        private val button: Button = view.findViewById(R.id.itemFromLaterButton)
+        private val button: Button = view.findViewById(R.id.itemFromLaterRemove)
 
         fun bind(item: Item) {
             // Увеличим область нажатия кнопули
@@ -70,7 +70,7 @@ class SavedItemListAdapter(
             pubDate.text = dateConverter.write(dateConverter.read(item.pubDate))
             recyclerView.layoutManager = LinearLayoutManager(context)
             val itemList: MutableList<NewsItem> = mutableListOf()
-            val adapter = ItemListFromItemAdapter(context, itemList)
+            val adapter = ItemListFromItemAdapter(context, itemList, activity, item.title)
             recyclerView.adapter = adapter
             itemList.addAll(item.newsItemList)
             adapter.notifyDataSetChanged()

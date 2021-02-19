@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -141,5 +142,14 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    // Делимся ссылочкой на новость
+    fun shareLink(link: String, theme: String) {
+        val intent = ShareCompat.IntentBuilder.from(this)
+            .setText(getString(R.string.share, theme) + link)
+            .setType("text/plain")
+            .intent
+        startActivity(intent)
     }
 }

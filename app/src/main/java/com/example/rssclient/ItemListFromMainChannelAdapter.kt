@@ -49,7 +49,7 @@ class ItemListFromMainChannelAdapter(
         private val pubDate: TextView = view.findViewById(R.id.itemFromChanelPubDate)
         private val recyclerView: RecyclerView =
             view.findViewById(R.id.recyclerViewForNewsItemsList)
-        private val button: Button = view.findViewById(R.id.itemFromChanelButton)
+        private val button: Button = view.findViewById(R.id.itemFromChanelSave)
 
         fun bind(item: Item) {
             // Увеличим область нажатия кнопули
@@ -70,7 +70,7 @@ class ItemListFromMainChannelAdapter(
             pubDate.text = dateConverter.write(dateConverter.read(item.pubDate))
             recyclerView.layoutManager = LinearLayoutManager(context)
             val itemList: MutableList<NewsItem> = mutableListOf()
-            val adapter = ItemListFromItemAdapter(context, itemList)
+            val adapter = ItemListFromItemAdapter(context, itemList, activity, item.title)
             recyclerView.adapter = adapter
             itemList.addAll(item.newsItemList)
             adapter.notifyDataSetChanged()

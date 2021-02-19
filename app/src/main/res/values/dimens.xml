@@ -2,4 +2,5 @@
 <resources>
     <dimen name="shiftBigBig">24dp</dimen>
     <dimen name="buttonSize">24dp</dimen>
+    <dimen name="buttonSizeSmall">20dp</dimen>
 </resources>
